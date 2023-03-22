@@ -13,6 +13,17 @@ public class Invoice_Details {
     private int amount;
     private Double price;
 
+    @Override
+    public String toString() {
+        return "Invoice_Details{" +
+                "invoice_detail_id=" + invoice_detail_id +
+                ", amount=" + amount +
+                ", price=" + price +
+                ", invoice=" + invoice +
+                ", products=" + products +
+                '}';
+    }
+
     @ManyToOne
     @JoinColumn(name = "invoice_id")
     private Invoice invoice;
@@ -22,6 +33,23 @@ public class Invoice_Details {
     private Products products;
 
     public Invoice_Details() {
+    }
+
+
+    public Invoice getInvoice() {
+        return invoice;
+    }
+
+    public void setInvoice(Invoice invoice) {
+        this.invoice = invoice;
+    }
+
+    public Products getProducts() {
+        return products;
+    }
+
+    public void setProducts(Products products) {
+        this.products = products;
     }
 
     public Long getInvoice_detail_id() {

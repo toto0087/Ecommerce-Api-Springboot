@@ -14,6 +14,16 @@ public class Invoice {
     private Date created_at;
     private Double total;
 
+    @Override
+    public String toString() {
+        return "Invoice{" +
+                "id=" + id +
+                ", created_at=" + created_at +
+                ", total=" + total +
+                ", client=" + client +
+                '}';
+    }
+
     @ManyToOne
     @JoinColumn(name = "client_id")
     private Client client;

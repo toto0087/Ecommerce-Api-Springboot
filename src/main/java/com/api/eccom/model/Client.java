@@ -13,7 +13,15 @@ public class Client {
     private String lastname;
     private String docnumber;
 
-
+    @Override
+    public String toString() {
+        return "Client{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", lastname='" + lastname + '\'' +
+                ", docnumber='" + docnumber + '\'' +
+                '}';
+    }
 
     public Client() {
     }

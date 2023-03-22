@@ -18,6 +18,17 @@ public class Products {
     public Products() {
     }
 
+    @Override
+    public String toString() {
+        return "Products{" +
+                "id=" + id +
+                ", description='" + description + '\'' +
+                ", code='" + code + '\'' +
+                ", stock=" + stock +
+                ", price=" + price +
+                '}';
+    }
+
     public Long getId() {
         return id;
     }
