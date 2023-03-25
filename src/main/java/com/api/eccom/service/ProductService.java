@@ -19,7 +19,7 @@ public class ProductService {
     private ProductsRepository productRepository;
 
     public Products create(Products newProduct) throws ProductAlreadyExistException {
-        Optional<Products> productOp = this.productRepository.findByCodigo(newProduct.getCode());
+        Optional<Products> productOp = this.productRepository.findByCode(newProduct.getCode());
 
         if(productOp.isPresent()) {
             log.info("El producto ya existe" + newProduct);
@@ -69,9 +69,9 @@ public class ProductService {
         return this.productRepository.findAll();
     }
 
-        public Products deleteById(Long id) throws Exception {
+    public Products deleteById(Long id) throws Exception {
         if (id <= 0) {
-            throw new Exception("El id no es valido");
+           throw new Exception("El id no es valido");
         }
 
         Optional<Products> productOp = this.productRepository.findById(id);
@@ -80,7 +80,8 @@ public class ProductService {
             log.info("El producto con el id brindado no existe en la base de datos" + productOp);
             throw new ProductNotFoundException("El producto solicitado no existe");
         } else {
-            return this.productRepository.deleteById(Long id);
+           productRepository.deleteById(id);
         }
+        return null;
     }
 }
