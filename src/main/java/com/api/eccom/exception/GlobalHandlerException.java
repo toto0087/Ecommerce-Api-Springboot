@@ -25,12 +25,22 @@ public class GlobalHandlerException {
 
     @ExceptionHandler(ClientAlreadyExist.class)
     public ResponseEntity<?> clientAlreadyExist(Exception e) {
-        return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>(e.getMessage(), HttpStatus.CONFLICT);
     }
 
     @ExceptionHandler(ClientNotFound.class)
     public ResponseEntity<?> clientNotFound(Exception e) {
         return new ResponseEntity<>(e.getMessage(), HttpStatus.CONFLICT);
+    }
+
+    @ExceptionHandler(InvoiceAlreadyExist.class)
+    public ResponseEntity<?> invoiceAlreadyExist(Exception e) {
+        return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler(InvoiceNotFound.class)
+    public ResponseEntity<?> invoiceNotFound(Exception e) {
+        return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
     }
 
 }

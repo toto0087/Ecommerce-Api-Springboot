@@ -2,14 +2,11 @@ package com.api.eccom.service;
 
 import com.api.eccom.exception.ClientAlreadyExist;
 import com.api.eccom.exception.ClientNotFound;
-import com.api.eccom.exception.ProductNotFoundException;
 import com.api.eccom.model.Client;
-import com.api.eccom.model.Products;
 import com.api.eccom.repository.ClientRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.ResponseStatus;
 
 import java.util.List;
 import java.util.Optional;
