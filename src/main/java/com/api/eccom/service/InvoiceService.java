@@ -1,17 +1,15 @@
 package com.api.eccom.service;
 
-import com.api.eccom.exception.ClientAlreadyExist;
-import com.api.eccom.exception.ClientNotFound;
+
 import com.api.eccom.exception.InvoiceAlreadyExist;
 import com.api.eccom.exception.InvoiceNotFound;
-import com.api.eccom.model.Client;
 import com.api.eccom.model.Invoice;
 import com.api.eccom.repository.InvoiceRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Date;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -26,7 +24,7 @@ public class InvoiceService {
         Optional<Invoice> invoiceOp = this.invoiceRepository.findById(newInvoice.getId());
 
         if(invoiceOp.isPresent()) {
-            log.info("El cliente ya existe" + newInvoice);
+            log.info("La factura ya existe" + newInvoice);
             throw new InvoiceAlreadyExist("La factura que quiere agregar ya existe");
         } else {
             return this.invoiceRepository.save(newInvoice);

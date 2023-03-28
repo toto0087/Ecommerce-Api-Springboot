@@ -30,16 +30,26 @@ public class GlobalHandlerException {
 
     @ExceptionHandler(ClientNotFound.class)
     public ResponseEntity<?> clientNotFound(Exception e) {
-        return new ResponseEntity<>(e.getMessage(), HttpStatus.CONFLICT);
+        return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
     }
 
     @ExceptionHandler(InvoiceAlreadyExist.class)
     public ResponseEntity<?> invoiceAlreadyExist(Exception e) {
-        return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>(e.getMessage(), HttpStatus.CONFLICT);
     }
 
     @ExceptionHandler(InvoiceNotFound.class)
     public ResponseEntity<?> invoiceNotFound(Exception e) {
+        return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler(InvoiceDetailAlreadyExist.class)
+    public ResponseEntity<?> invoiceDetailAlreadyExist(Exception e) {
+        return new ResponseEntity<>(e.getMessage(), HttpStatus.CONFLICT);
+    }
+
+    @ExceptionHandler(InvoiceDetailNotFound.class)
+    public ResponseEntity<?> invoiceDetailNotFound(Exception e) {
         return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
     }
 

@@ -25,14 +25,14 @@ public class InvoiceController {
         return new ResponseEntity<>(this.invoiceService.create(invoice), HttpStatus.OK);
     }
 
-    @PutMapping(path = "/{id}")
-    public ResponseEntity<Invoice> update(@RequestBody Invoice invoice, @PathVariable Long id) throws Exception {
-        return new ResponseEntity<>(this.invoiceService.update(invoice,id), HttpStatus.OK);
+    @PutMapping(path = "/{invoice_detail_id}")
+    public ResponseEntity<Invoice> update(@RequestBody Invoice invoice, @PathVariable Long invoice_detail_id) throws Exception {
+        return new ResponseEntity<>(this.invoiceService.update(invoice,invoice_detail_id), HttpStatus.OK);
     }
 
-    @GetMapping(path = "/{id}")
-    public ResponseEntity<Invoice> findById(@PathVariable Long id) throws Exception {
-        return new ResponseEntity<>(this.invoiceService.findById(id), HttpStatus.OK);
+    @GetMapping(path = "/{invoice_detail_id}")
+    public ResponseEntity<Invoice> findById(@PathVariable Long invoice_detail_id) throws Exception {
+        return new ResponseEntity<>(this.invoiceService.findById(invoice_detail_id), HttpStatus.OK);
     }
 
     @GetMapping(path = "/")
@@ -40,9 +40,9 @@ public class InvoiceController {
         return new ResponseEntity<>(this.invoiceService.findAll(), HttpStatus.OK);
     }
 
-    @DeleteMapping(path = "/{id}")
-    public ResponseEntity<Invoice> deleteById(@PathVariable Long id) throws Exception {
-        return new ResponseEntity<>(this.invoiceService.deleteById(id), HttpStatus.OK);
+    @DeleteMapping(path = "/{invoice_detail_id}")
+    public ResponseEntity<Invoice> deleteById(@PathVariable Long invoice_detail_id) throws Exception {
+        return new ResponseEntity<>(this.invoiceService.deleteById(invoice_detail_id), HttpStatus.OK);
     }
 
 }
