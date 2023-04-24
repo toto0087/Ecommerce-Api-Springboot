@@ -4,7 +4,8 @@ import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.Date;
+import java.time.LocalDateTime;
+
 @NoArgsConstructor
 @Data
 @Entity
@@ -14,19 +15,16 @@ public class Invoice {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private Date created_at;
+    private LocalDateTime created_at;
     private Double total;
 
     @ManyToOne
     @JoinColumn(name = "client_id")
     private Client client;
 
-    public Client getClient() {
-        return client;
-    }
-
-    public void setClient(Client client) {
-        this.client = client;
+    @PrePersist
+    private void prePersist() {
+        created_at = LocalDateTime.now();
     }
 
 
