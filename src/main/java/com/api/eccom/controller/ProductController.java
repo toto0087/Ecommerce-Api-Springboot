@@ -1,7 +1,6 @@
 package com.api.eccom.controller;
 
-import com.api.eccom.exception.ProductAlreadyExistException;
-//import com.api.eccom.exception.ProductNotFoundException;
+
 import com.api.eccom.model.Products;
 import com.api.eccom.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +17,7 @@ public class ProductController {
     private ProductService productService;
 
     @PostMapping(path = "/")
-    public ResponseEntity<Products> create(@RequestBody Products product) throws ProductAlreadyExistException {
+    public ResponseEntity<Products> create(@RequestBody Products product) throws Exception {
         return new ResponseEntity<>(this.productService.create(product), HttpStatus.OK);
     }
 

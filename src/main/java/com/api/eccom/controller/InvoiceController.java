@@ -1,10 +1,7 @@
 package com.api.eccom.controller;
 
-import com.api.eccom.exception.ClientAlreadyExist;
-import com.api.eccom.exception.InvoiceAlreadyExist;
-import com.api.eccom.model.Client;
+
 import com.api.eccom.model.Invoice;
-import com.api.eccom.service.ClientService;
 import com.api.eccom.service.InvoiceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -21,7 +18,7 @@ public class InvoiceController {
     private InvoiceService invoiceService;
 
     @PostMapping(path = "/")
-    public ResponseEntity<Invoice> create(@RequestBody Invoice invoice) throws InvoiceAlreadyExist {
+    public ResponseEntity<Invoice> create(@RequestBody Invoice invoice) throws Exception {
         return new ResponseEntity<>(this.invoiceService.create(invoice), HttpStatus.OK);
     }
 

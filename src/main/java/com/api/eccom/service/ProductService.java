@@ -1,7 +1,6 @@
 package com.api.eccom.service;
 
-import com.api.eccom.exception.ProductAlreadyExistException;
-import com.api.eccom.exception.ProductNotFoundException;
+
 import com.api.eccom.model.Products;
 import com.api.eccom.repository.ProductsRepository;
 import lombok.extern.slf4j.Slf4j;
@@ -18,12 +17,12 @@ public class ProductService {
     @Autowired
     private ProductsRepository productRepository;
 
-    public Products create(Products newProduct) throws ProductAlreadyExistException {
+    public Products create(Products newProduct) throws Exception {
         Optional<Products> productOp = this.productRepository.findByCode(newProduct.getCode());
 
         if(productOp.isPresent()) {
             log.info("El producto ya existe" + newProduct);
-            throw new ProductAlreadyExistException("El producto que quiere agregar ya existe");
+            throw new Exception("El producto que quiere agregar ya existe");
         } else {
             return this.productRepository.save(newProduct);
         }
@@ -37,7 +36,7 @@ public class ProductService {
 
         if(productOp.isEmpty()) {
             log.info("El producto que intenta modificar no existe" + newProduct);
-            throw new ProductNotFoundException("El producto que intenta modificar no existe");
+            throw new Exception("El producto que intenta modificar no existe");
         } else {
             Products productBd = productOp.get();
 
@@ -59,7 +58,7 @@ public class ProductService {
 
         if(productOp.isEmpty()) {
             log.info("El producto con el id brindado no existe en la base de datos" + productOp);
-            throw new ProductNotFoundException("El producto solicitado no existe");
+            throw new Exception("El producto solicitado no existe");
         } else {
             return productOp.get();
         }
@@ -78,7 +77,7 @@ public class ProductService {
 
         if(productOp.isEmpty()) {
             log.info("El producto con el id brindado no existe en la base de datos" + productOp);
-            throw new ProductNotFoundException("El producto solicitado no existe");
+            throw new Exception("El producto solicitado no existe");
         } else {
            productRepository.deleteById(id);
         }

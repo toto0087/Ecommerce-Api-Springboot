@@ -1,8 +1,7 @@
 package com.api.eccom.service;
 
 
-import com.api.eccom.exception.InvoiceAlreadyExist;
-import com.api.eccom.exception.InvoiceNotFound;
+
 import com.api.eccom.model.Invoice;
 import com.api.eccom.repository.InvoiceRepository;
 import lombok.extern.slf4j.Slf4j;
@@ -20,12 +19,12 @@ public class InvoiceService {
     @Autowired
     private InvoiceRepository invoiceRepository;
 
-    public Invoice create(Invoice newInvoice) throws InvoiceAlreadyExist {
+    public Invoice create(Invoice newInvoice) throws Exception {
         Optional<Invoice> invoiceOp = this.invoiceRepository.findById(newInvoice.getId());
 
         if(invoiceOp.isPresent()) {
             log.info("La factura ya existe" + newInvoice);
-            throw new InvoiceAlreadyExist("La factura que quiere agregar ya existe");
+            throw new Exception("La factura que quiere agregar ya existe");
         } else {
             return this.invoiceRepository.save(newInvoice);
         }
@@ -39,7 +38,7 @@ public class InvoiceService {
 
         if(invoiceOp.isEmpty()) {
             log.info("La factura que intenta modificar no existe" + newInvoice);
-            throw new InvoiceNotFound("La factura que intenta modificar no existe");
+            throw new Exception("La factura que intenta modificar no existe");
         } else {
             Invoice invoiceBd = invoiceOp.get();
 
@@ -60,7 +59,7 @@ public class InvoiceService {
 
         if(invoiceOp.isEmpty()) {
             log.info("La factura con el id brindado no existe en la base de datos" + invoiceOp);
-            throw new InvoiceNotFound("La factura solicitada no existe");
+            throw new Exception("La factura solicitada no existe");
         } else {
             return invoiceOp.get();
         }
@@ -80,7 +79,7 @@ public class InvoiceService {
 
         if(invoiceOp.isEmpty()) {
             log.info("La factura con el id brindado no existe en la base de datos" + invoiceOp);
-            throw new InvoiceNotFound("La factura solicitada no existe");
+            throw new Exception("La factura solicitada no existe");
         } else {
             invoiceRepository.deleteById(id);
         }

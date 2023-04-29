@@ -1,8 +1,7 @@
 package com.api.eccom.service;
 
 
-import com.api.eccom.exception.InvoiceDetailAlreadyExist;
-import com.api.eccom.exception.InvoiceDetailNotFound;
+
 import com.api.eccom.model.Invoice_Details;
 import com.api.eccom.repository.Invoice_DetailsRepository;
 import lombok.extern.slf4j.Slf4j;
@@ -18,15 +17,9 @@ public class InvoiceDetailService {
     @Autowired
     private Invoice_DetailsRepository invoice_DetailsRepository;
 
-    public Invoice_Details create(Invoice_Details newInvoiceDetail) throws InvoiceDetailAlreadyExist {
+    public Invoice_Details create(Invoice_Details newInvoiceDetail) throws Exception {
         Optional<Invoice_Details> invoiceDOp = this.invoice_DetailsRepository.findById(newInvoiceDetail.getInvoice_detail_id());
-
-        if(invoiceDOp.isPresent()) {
-            log.info("Los detalles de la factura ya existen" + newInvoiceDetail);
-            throw new InvoiceDetailAlreadyExist("La factura que quiere agregar ya existe");
-        } else {
-            return this.invoice_DetailsRepository.save(newInvoiceDetail);
-        }
+        return null;
     }
 
     public Invoice_Details update(Invoice_Details newInvoiceDetail, Long id) throws Exception{
@@ -37,7 +30,7 @@ public class InvoiceDetailService {
 
         if(invoiceDOp.isEmpty()) {
             log.info("Los detalles de factura que intenta modificar no existen" + newInvoiceDetail);
-            throw new InvoiceDetailNotFound("Los detalles de factura que intenta modificar no existe");
+            throw new Exception("Los detalles de factura que intenta modificar no existe");
         } else {
             Invoice_Details invoiceDBd = invoiceDOp.get();
 
@@ -59,7 +52,7 @@ public class InvoiceDetailService {
 
         if(invoiceDOp.isEmpty()) {
             log.info("Los detalles de factura con el id brindado no existen en la base de datos" + invoiceDOp);
-            throw new InvoiceDetailNotFound("La factura solicitada no existe");
+            throw new Exception("La factura solicitada no existe");
         } else {
             return invoiceDOp.get();
         }
@@ -78,7 +71,7 @@ public class InvoiceDetailService {
 
         if(invoiceDOp.isEmpty()) {
             log.info("Los detalles de factura con el id brindado no existen en la base de datos" + invoiceDOp);
-            throw new InvoiceDetailNotFound("Los detalles de factura solicitados no existen");
+            throw new Exception("Los detalles de factura solicitados no existen");
         } else {
             invoice_DetailsRepository.deleteById(id);
         }

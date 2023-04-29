@@ -1,8 +1,8 @@
 package com.api.eccom.controller;
 
-import com.api.eccom.exception.ClientAlreadyExist;
+
 import com.api.eccom.model.Client;
-import com.api.eccom.model.Products;
+
 import com.api.eccom.service.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -18,7 +18,7 @@ public class ClientController {
     private ClientService clientService;
 
     @PostMapping(path = "/")
-    public ResponseEntity<Client> create(@RequestBody Client client) throws ClientAlreadyExist {
+    public ResponseEntity<Client> create(@RequestBody Client client) throws Exception {
         return new ResponseEntity<>(this.clientService.create(client), HttpStatus.OK);
     }
 
