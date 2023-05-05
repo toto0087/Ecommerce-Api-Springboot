@@ -2,6 +2,7 @@ package com.api.eccom.controller;
 
 
 import com.api.eccom.model.Invoice;
+import com.api.eccom.model.InvoiceList;
 import com.api.eccom.service.InvoiceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -18,13 +19,8 @@ public class InvoiceController {
     private InvoiceService invoiceService;
 
     @PostMapping(path = "/")
-    public ResponseEntity<Invoice> create(@RequestBody Invoice invoice) throws Exception {
-        return new ResponseEntity<>(this.invoiceService.create(invoice), HttpStatus.OK);
-    }
-
-    @PutMapping(path = "/{invoice_detail_id}")
-    public ResponseEntity<Invoice> update(@RequestBody Invoice invoice, @PathVariable Long invoice_detail_id) throws Exception {
-        return new ResponseEntity<>(this.invoiceService.update(invoice,invoice_detail_id), HttpStatus.OK);
+    public ResponseEntity<List<Invoice>> create(@RequestBody InvoiceList request) throws Exception {
+        return new ResponseEntity<>(invoiceService.create(request.invoiceDetailList, request.client), HttpStatus.OK);
     }
 
     @GetMapping(path = "/{invoice_detail_id}")
@@ -35,11 +31,6 @@ public class InvoiceController {
     @GetMapping(path = "/")
     public ResponseEntity<List<Invoice>> findAll()  {
         return new ResponseEntity<>(this.invoiceService.findAll(), HttpStatus.OK);
-    }
-
-    @DeleteMapping(path = "/{invoice_detail_id}")
-    public ResponseEntity<Invoice> deleteById(@PathVariable Long invoice_detail_id) throws Exception {
-        return new ResponseEntity<>(this.invoiceService.deleteById(invoice_detail_id), HttpStatus.OK);
     }
 
 }
