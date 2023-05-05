@@ -17,13 +17,13 @@ public class ProductController {
     private ProductService productService;
 
     @PostMapping(path = "/")
-    public ResponseEntity<Products> create(@RequestBody Products product) throws Exception {
-        return new ResponseEntity<>(this.productService.create(product), HttpStatus.OK);
+    public ResponseEntity<List<Products>> create(@RequestBody List<Products> productList) throws Exception {
+        return new ResponseEntity<>(this.productService.create(productList), HttpStatus.OK);
     }
 
     @PutMapping(path = "/{id}")
-    public ResponseEntity<Products> update(@RequestBody Products product, @PathVariable Long id) throws Exception {
-        return new ResponseEntity<>(this.productService.update(product,id), HttpStatus.OK);
+    public ResponseEntity<Products> update(@RequestBody Products product) throws Exception {
+        return new ResponseEntity<>(this.productService.update(product), HttpStatus.OK);
     }
 
     @GetMapping(path = "/{id}")
