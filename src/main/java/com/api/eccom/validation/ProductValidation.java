@@ -2,9 +2,11 @@ package com.api.eccom.validation;
 
 import com.api.eccom.model.Products;
 import com.api.eccom.repository.ProductsRepository;
+import org.springframework.stereotype.Component;
 
 import java.util.Optional;
 
+@Component
 public class ProductValidation {
     private final ProductsRepository productRepository;
 
